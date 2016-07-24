@@ -1,0 +1,11 @@
+DerpXmlWrite_Init()
+
+DerpXmlWrite_New()
+//DerpXmlWrite_Config('', '')
+DerpXmlWrite_OpenTag('a')
+DerpXmlWrite_OpenTag('b')
+DerpXmlWrite_Text('derp')
+DerpXmlWrite_CloseTag('b')
+DerpXmlWrite_CloseTag('a')
+show_debug_message('')
+show_debug_message(DerpXmlWrite_GetString())

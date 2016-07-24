@@ -1,7 +1,7 @@
 #define DerpXmlSax_Init
 /// DerpXmlSax_Init(enableDebugMessages)
 //
-//  Initializes DerpXml. Call this once at the start of your game.
+//  Initializes DerpXml Sax. Call this once at the start of your game.
 //
 //  enableDebugMessages    true to print info using show_debug_message, false to just be silent
 //  Returns true if init was successful; false if something went wrong and init was unsucessful
