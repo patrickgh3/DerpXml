@@ -96,6 +96,24 @@
           <argCount>-1</argCount>
           <args/>
         </function>
+        <function>
+          <name>DerpXmlSax_OpenFile</name>
+          <externalName>DerpXmlSax_OpenFile</externalName>
+          <kind>11</kind>
+          <help>DerpXmlSax_OpenFile(filePath)</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>DerpXmlSax_CloseFile</name>
+          <externalName>DerpXmlSax_CloseFile</externalName>
+          <kind>11</kind>
+          <help>DerpXmlSax_CloseFile()</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
       </functions>
       <constants>
         <constant>

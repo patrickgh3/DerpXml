@@ -9,17 +9,24 @@
 
 var enableDebugMessages = argument0
 
-if not instance_exists(objDerpXml) {
-    instance_create(0, 0, objDerpXml)
+if not instance_exists(objDerpXmlSax) {
+    instance_create(0, 0, objDerpXmlSax)
 }
-with objDerpXml {
+with objDerpXmlSax {
     self.enableDebugMessages = enableDebugMessages
-    xmlString = ''
+    readMode_String = 0
+    readMode_File = 1
+    
+    readMode = readMode_String
+    saxString = ''
+    saxFile = -1
+    
     stringPos = 0
     currentType = DerpXml_STStart
     currentValue = ''
     currentRawValue = ''
 }
+
 return true
 
 #define DerpXmlSax_LoadFromString
@@ -27,14 +34,56 @@ return true
 //
 //  Loads XML contained in a string.
 //
+//  xmlString     string containing XML, e.g. "<a>derp</a>"
 //  Returns whether load was successful
 
 var xmlString = argument0
 
-if not is_string(xmlString) {
+with objDerpXmlSax {
+    saxString = xmlString
+    readMode = readMode_String
     
+    stringPos = 0
+    currentType = DerpXml_STStart
+    currentValue = ''
+    currentRawValue = ''
 }
-objDerpXml.xmlString = xmlString
+return true
+
+#define DerpXmlSax_OpenFile
+/// DerpXmlSax_OpenFile(xmlFilePath)
+//
+//  Opens an XML document from file. Be sure to call DerpXmlSax_CloseFile when you're done.
+//
+//  xmlFilePath    Path to a .xml file
+//  Returns whether load was successful
+
+var xmlFilePath = argument0
+
+var file = file_text_open_read(xmlFilePath)
+if file == -1 {
+    return false
+}
+with objDerpXmlSax {
+    saxFile = file
+    readMode = readMode_File
+    saxString = file_text_read_string(saxFile)
+    
+    stringPos = 0
+    currentType = DerpXml_STStart
+    currentValue = ''
+    currentRawValue = ''
+}
+return true
+
+#define DerpXmlSax_CloseFile
+/// DerpXmlSax_CloseFile()
+//
+//  Closes the currently open XML file.
+//
+//  Returns whether the close was successful
+
+file_text_close(objDerpXmlSax.saxFile)
 return true
 
 #define DerpXmlSax_Read
@@ -45,7 +94,7 @@ return true
 //  Returns true if the next node was read successfully; false if there
 //  are no more nodes to read.
 
-with objDerpXml {
+with objDerpXmlSax {
     var readString = ''
     var numCharsRead = 0
     var startedWithOpenBracket = false
@@ -55,9 +104,22 @@ with objDerpXml {
         // advance in the document
         stringPos += 1
         
-        // detect end of document
-        if stringPos > string_length(xmlString) {
-            stringPos = string_length(xmlString)
+        // file detect end of line (and possibly end of document)
+        if readMode == readMode_File and stringPos > string_length(saxString) {
+            file_text_readln(saxFile)
+            if file_text_eof(saxFile) {
+                currentType = DerpXml_STEnd
+                currentValue = ''
+                currentRawValue = ''
+                return false
+            }
+            saxString = file_text_read_string(saxFile)
+            stringPos = 1
+        }
+        
+        // string detect end of document
+        if readMode == readMode_String and stringPos > string_length(saxString) {
+            stringPos = string_length(saxString)
             currentType = DerpXml_STEnd
             currentValue = ''
             currentRawValue = ''
@@ -65,7 +127,7 @@ with objDerpXml {
         }
         
         // grab the new character
-        var currentChar =  string_char_at(xmlString, stringPos);
+        var currentChar =  string_char_at(saxString, stringPos);
         readString += currentChar
         numCharsRead += 1
         
@@ -93,7 +155,7 @@ with objDerpXml {
         }
         // end of whitespace and text
         else if numCharsRead > 1 and currentChar == '<' {
-            if string_char_at(xmlString, stringPos+1) == '/' and lastType == DerpXml_STOpenTag {
+            if string_char_at(saxString, stringPos+1) == '/' and lastType == DerpXml_STOpenTag {
                 currentType = DerpXml_STText
             }
             else {
@@ -119,7 +181,7 @@ with objDerpXml {
 //      DerpXML_STStart         Start of document, no reads performed yet
 //      DerpXML_STEnd           End of document
 
-return objDerpXml.currentType
+return objDerpXmlSax.currentType
 
 #define DerpXmlSax_CurValue
 /// DerpXmlSax_CurValue()
@@ -131,7 +193,7 @@ return objDerpXml.currentType
 //      Text: returns "texttext"
 //      Whitespace: returns "    "
 
-return objDerpXml.currentValue
+return objDerpXmlSax.currentValue
 
 #define DerpXmlSax_CurRawValue
 /// DerpXmlSax_CurRawValue()
@@ -141,4 +203,4 @@ return objDerpXml.currentValue
 //  Examples:
 //      Tags: returns "<tagname>"
 
-return objDerpXml.currentRawValue
+return objDerpXmlSax.currentRawValue
