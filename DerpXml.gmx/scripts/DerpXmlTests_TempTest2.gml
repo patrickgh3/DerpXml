@@ -1,5 +1,3 @@
-DerpXmlWrite_Init()
-
 DerpXmlWrite_New()
 //DerpXmlWrite_Config('', '')
 DerpXmlWrite_OpenTag('a')

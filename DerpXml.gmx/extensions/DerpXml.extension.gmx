@@ -24,16 +24,34 @@
   <iosThirdPartyFrameworks/>
   <androidPermissions/>
   <IncludedResources>
-    <Resource>Objects\objDerpXml</Resource>
-    <Resource>Scripts\DerpXmlTests\DerpXml_TempTest</Resource>
+    <Resource>Scripts\DerpXml\DerpXml_Init</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_OpenFile</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CloseFile</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_LoadString</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_Read</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurType</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurValue</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurRawValue</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_New</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Config</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_OpenTag</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_CloseTag</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Text</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_GetString</Resource>
+    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_RunAll</Resource>
+    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_TempTest</Resource>
+    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_TempTest2</Resource>
+    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_ReadAndPrint</Resource>
+    <Resource>Objects\DerpXml\objDerpXmlRead</Resource>
+    <Resource>Objects\DerpXml\objDerpXmlWrite</Resource>
   </IncludedResources>
   <files>
     <file>
-      <filename>DerpXmlSax.gml</filename>
-      <origname>extensions\DerpXml.gml</origname>
+      <filename>DerpXmlMacros.ext</filename>
+      <origname>extensions\DerpXml.ext</origname>
       <init></init>
       <final></final>
-      <kind>2</kind>
+      <kind>4</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
@@ -41,192 +59,39 @@
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
-      <functions>
-        <function>
-          <name>DerpXmlSax_Init</name>
-          <externalName>DerpXmlSax_Init</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_Init(enableDebugMessages)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_LoadFromString</name>
-          <externalName>DerpXmlSax_LoadFromString</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_LoadFromString(xmlString)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_Read</name>
-          <externalName>DerpXmlSax_Read</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_Read()</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_CurType</name>
-          <externalName>DerpXmlSax_CurType</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_CurType()</help>
-          <returnType>1</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_CurValue</name>
-          <externalName>DerpXmlSax_CurValue</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_CurValue()</help>
-          <returnType>1</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_CurRawValue</name>
-          <externalName>DerpXmlSax_CurRawValue</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_CurRawValue()</help>
-          <returnType>1</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_OpenFile</name>
-          <externalName>DerpXmlSax_OpenFile</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_OpenFile(filePath)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlSax_CloseFile</name>
-          <externalName>DerpXmlSax_CloseFile</externalName>
-          <kind>11</kind>
-          <help>DerpXmlSax_CloseFile()</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-      </functions>
+      <functions/>
       <constants>
         <constant>
-          <name>DerpXml_STStart</name>
-          <value>"Start"</value>
+          <name>DerpXmlType_StartOfFile</name>
+          <value>"StartOfFile"</value>
           <hidden>0</hidden>
         </constant>
         <constant>
-          <name>DerpXml_STOpenTag</name>
+          <name>DerpXmlType_OpenTag</name>
           <value>"OpenTag"</value>
           <hidden>0</hidden>
         </constant>
         <constant>
-          <name>DerpXml_STCloseTag</name>
+          <name>DerpXmlType_CloseTag</name>
           <value>"CloseTag"</value>
           <hidden>0</hidden>
         </constant>
         <constant>
-          <name>DerpXml_STText</name>
+          <name>DerpXmlType_Text</name>
           <value>"Text"</value>
           <hidden>0</hidden>
         </constant>
         <constant>
-          <name>DerpXml_STWhitespace</name>
+          <name>DerpXmlType_Whitespace</name>
           <value>"Whitespace"</value>
           <hidden>0</hidden>
         </constant>
         <constant>
-          <name>DerpXml_STEnd</name>
-          <value>"End"</value>
+          <name>DerpXmlType_EndOfFile</name>
+          <value>"EndOfFile"</value>
           <hidden>0</hidden>
         </constant>
       </constants>
-    </file>
-    <file>
-      <filename>DerpXmlWrite.gml</filename>
-      <origname>extensions\DerpXmlWrite.gml</origname>
-      <init></init>
-      <final></final>
-      <kind>2</kind>
-      <uncompress>0</uncompress>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <ProxyFiles/>
-      <functions>
-        <function>
-          <name>DerpXmlWrite_Init</name>
-          <externalName>DerpXmlWrite_Init</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_Init(enableDebugMessages)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlWrite_New</name>
-          <externalName>DerpXmlWrite_New</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_New()</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlWrite_GetString</name>
-          <externalName>DerpXmlWrite_GetString</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_GetString()</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlWrite_OpenTag</name>
-          <externalName>DerpXmlWrite_OpenTag</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_OpenTag(value)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlWrite_CloseTag</name>
-          <externalName>DerpXmlWrite_CloseTag</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_CloseTag(value)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlWrite_Text</name>
-          <externalName>DerpXmlWrite_Text</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_Text(value)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>DerpXmlWrite_Config</name>
-          <externalName>DerpXmlWrite_Config</externalName>
-          <kind>11</kind>
-          <help>DerpXmlWrite_Config(indentString, newlineString)</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-      </functions>
-      <constants/>
     </file>
   </files>
 </extension>
