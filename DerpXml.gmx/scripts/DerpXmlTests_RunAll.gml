@@ -1,3 +1,3 @@
 DerpXml_Init(false)
-DerpXmlTests_TempTest()
-DerpXmlTests_TempTest2()
+DerpXmlTests_Read()
+DerpXmlTests_Write()

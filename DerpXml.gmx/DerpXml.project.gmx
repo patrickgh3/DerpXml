@@ -35,8 +35,8 @@
       </scripts>
       <scripts name="Tests">
         <script>scripts\DerpXmlTests_RunAll.gml</script>
-        <script>scripts\DerpXmlTests_TempTest.gml</script>
-        <script>scripts\DerpXmlTests_TempTest2.gml</script>
+        <script>scripts\DerpXmlTests_Read.gml</script>
+        <script>scripts\DerpXmlTests_Write.gml</script>
         <script>scripts\DerpXmlTests_ReadAndPrint.gml</script>
       </scripts>
     </scripts>

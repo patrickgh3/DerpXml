@@ -5,8 +5,6 @@
 with objDerpXmlWrite {
     if lastWriteType == DerpXmlType_CloseTag {
         currentIndent -= 1
-    }
-    if lastWriteType != 'Text' {
         repeat currentIndent {
             writeString += indentString
         }
