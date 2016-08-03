@@ -34,6 +34,7 @@ with objDerpXmlWrite {
     enableDebugMessages = edb
     indentString = '  '
     newlineString = chr(10)
+    tagNameStack = ds_stack_create()
     
     writeString = ''
     currentIndent = 0
