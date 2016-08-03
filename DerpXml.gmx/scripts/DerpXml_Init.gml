@@ -15,6 +15,7 @@ with objDerpXmlRead {
     enableDebugMessages = edb
     readMode_String = 0
     readMode_File = 1
+    attributeMap = ds_map_create()
     
     readMode = readMode_String
     xmlString = ''

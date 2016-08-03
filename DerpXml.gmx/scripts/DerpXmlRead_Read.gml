@@ -11,6 +11,12 @@ with objDerpXmlRead {
     var startedWithOpenBracket = false
     var secondCharSlash = false
     var lastType = currentType
+    var tagName = ''
+    var tagState = ''
+    var attrKeyName = ''
+    var attrValName = ''
+    ds_map_clear(attributeMap)
+    
     while true {
         // advance in the document
         stringPos += 1
@@ -38,22 +44,60 @@ with objDerpXmlRead {
         }
         
         // grab the new character
-        var currentChar =  string_char_at(xmlString, stringPos);
+        var currentChar = string_char_at(xmlString, stringPos);
         readString += currentChar
         numCharsRead += 1
         
         // start of tags and slash check
         if numCharsRead == 1 and currentChar == '<' {
             startedWithOpenBracket = true
+            tagState = 'tagname'
         }
         else if numCharsRead == 2 and startedWithOpenBracket and currentChar == '/' {
             secondCharSlash = true
+        }
+        // attributes in middle of tags
+        else if numCharsRead >= 3 and startedWithOpenBracket and not secondCharSlash
+        and not (currentChar == '>' and (tagState == 'whitespace' or tagState == 'tagname')) {
+            if tagState == 'tagname' {
+                if currentChar == ' ' {
+                    tagState = 'whitespace'
+                    tagName = string_copy(readString, 2, string_length(readString)-2)
+                }
+            }
+            else if tagState == 'whitespace' {
+                if currentChar != ' ' {
+                    tagState = 'attrkey'
+                    attrKeyName += currentChar
+                }
+            }
+            else if tagState == 'attrkey' {
+                if currentChar == '=' {
+                    tagState = 'attrval'
+                    stringPos += 1
+                }
+                else {
+                    attrKeyName += currentChar
+                }
+            }
+            else if tagState == 'attrval' {
+                if currentChar == '"' {
+                    tagState = 'whitespace'
+                    attributeMap[? attrKeyName] = attrValName
+                    attrKeyName = ''
+                    attrValName = ''
+                }
+                else {
+                    attrValName += currentChar
+                }
+            }
         }
         // end of tags
         else if currentChar == '>' {
             if not secondCharSlash {
                 currentType = DerpXmlType_OpenTag
-                currentValue = string_copy(readString, 2, string_length(readString)-2)
+                if tagName == '' tagName = string_copy(readString, 2, string_length(readString)-2)
+                currentValue = tagName
                 currentRawValue = readString
                 return true
             }
