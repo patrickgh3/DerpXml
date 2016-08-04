@@ -8,13 +8,14 @@
 with objDerpXmlRead {
     var readString = ''
     var numCharsRead = 0
-    var startedWithOpenBracket = false
-    var secondCharSlash = false
     var lastType = currentType
-    var tagName = ''
+    
+    var isTag = false
+    var isClosingTag = false
     var tagState = ''
-    var attrKeyName = ''
-    var attrValName = ''
+    var tagName = ''
+    var attrKey = ''
+    var attrVal = ''
     ds_map_clear(attributeMap)
     
     while true {
@@ -48,78 +49,101 @@ with objDerpXmlRead {
         readString += currentChar
         numCharsRead += 1
         
-        // start of tags and slash check
-        if numCharsRead == 1 and currentChar == '<' {
-            startedWithOpenBracket = true
-            tagState = 'tagname'
-        }
-        else if numCharsRead == 2 and startedWithOpenBracket and currentChar == '/' {
-            secondCharSlash = true
-        }
-        // attributes in middle of tags
-        else if numCharsRead >= 3 and startedWithOpenBracket and not secondCharSlash
-        and not (currentChar == '>' and (tagState == 'whitespace' or tagState == 'tagname')) {
-            if tagState == 'tagname' {
+        // main state 1: in the middle of parsing a tag
+        if isTag {
+            // reach > and not in attribute value, so end of tag
+            if currentChar == '>' and tagState != 'attr_value' {
+                if isClosingTag {
+                    currentType = DerpXmlType_CloseTag
+                    currentValue = string_copy(readString, 3, string_length(readString)-3)
+                    currentRawValue = readString
+                    return true
+                }
+                else {
+                    currentType = DerpXmlType_OpenTag
+                    currentValue = tagName
+                    currentRawValue = readString
+                    return true
+                }
+            }
+            
+            // not end of tag, so either tag name or some attribute state
+            if tagState == 'tag_name' {
+                // check if encountering space, so done with tag name
                 if currentChar == ' ' {
                     tagState = 'whitespace'
                     tagName = string_copy(readString, 2, string_length(readString)-2)
                 }
+                
+                // check for beginning slash
+                else if numCharsRead == 2 and currentChar == '/' {
+                    isClosingTag = true
+                }
+                
+                // in the normal case, just add to tag name
+                else {
+                    tagName += currentChar
+                }
             }
             else if tagState == 'whitespace' {
+                // if encounter non-space character, it's the start of a key
                 if currentChar != ' ' {
-                    tagState = 'attrkey'
-                    attrKeyName += currentChar
+                    attrKey += currentChar
+                    tagState = 'key'
                 }
             }
-            else if tagState == 'attrkey' {
-                if currentChar == '=' {
-                    tagState = 'attrval'
-                    stringPos += 1
+            else if tagState == 'key' {
+                // if encounter = or space, start the value whitespace
+                if currentChar == '=' or currentChar == ' ' {
+                    tagState = 'value_whitespace'
                 }
+                
+                // in the normal case, just add to the key
                 else {
-                    attrKeyName += currentChar
+                    attrKey += currentChar
                 }
             }
-            else if tagState == 'attrval' {
-                if currentChar == '"' {
+            else if tagState == 'value_whitespace' {
+                // if encounter quote, start the key
+                if currentChar == '"' or currentChar == "'" {
+                    tagState = 'value'
+                }
+            }
+            else if tagState == 'value' {
+                // if encounter quote, we're done with the value, store the attribute and return to whitespace
+                if currentChar == '"' or currentChar == "'" {
+                    attributeMap[? attrKey] = attrVal
+                    attrKey = ''
+                    attrVal = ''
                     tagState = 'whitespace'
-                    attributeMap[? attrKeyName] = attrValName
-                    attrKeyName = ''
-                    attrValName = ''
                 }
                 else {
-                    attrValName += currentChar
+                    attrVal += currentChar
                 }
             }
         }
-        // end of tags
-        else if currentChar == '>' {
-            if not secondCharSlash {
-                currentType = DerpXmlType_OpenTag
-                if tagName == '' tagName = string_copy(readString, 2, string_length(readString)-2)
-                currentValue = tagName
-                currentRawValue = readString
+        
+        // main state 2: not parsing a tag
+        else {
+            // first character is <, so we're starting a tag
+            if currentChar == '<' and numCharsRead == 1 {
+                isTag = true
+                tagState = 'tag_name'
+            }
+            
+            // reach a < that's not the first character, which is the end of text and whitespace
+            if currentChar == '<' and numCharsRead > 1 {
+                if string_char_at(xmlString, stringPos+1) == '/' and lastType == DerpXmlType_OpenTag {
+                    currentType = DerpXmlType_Text
+                }
+                else {
+                    currentType = DerpXmlType_Whitespace
+                }
+                stringPos -= 1
+                currentValue = string_copy(readString, 1, string_length(readString)-1)
+                currentRawValue = currentValue
                 return true
             }
-            else {
-                currentType = DerpXmlType_CloseTag
-                currentValue = string_copy(readString, 3, string_length(readString)-3)
-                currentRawValue = readString
-                return true
-            }
-        }
-        // end of whitespace and text
-        else if numCharsRead > 1 and currentChar == '<' {
-            if string_char_at(xmlString, stringPos+1) == '/' and lastType == DerpXmlType_OpenTag {
-                currentType = DerpXmlType_Text
-            }
-            else {
-                currentType = DerpXmlType_Whitespace
-            }
-            stringPos -= 1
-            currentValue = string_copy(readString, 1, string_length(readString)-1)
-            currentRawValue = currentValue
-            return true
         }
     }
 }
