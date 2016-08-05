@@ -16,14 +16,19 @@ var xmlString = '
 
 cat! #1
 cat looks like: =^.^=
+created cat
 fish! #2
 fish looks like: }{}
+created fish
 cat! #3
 cat looks like: ~(=^.w.^)
+created cat
 cat! #4
 cat looks like: hi im a cat
+created cat
 fish! #5
 fish looks like: {}{
+created fish
 
 */
 
@@ -33,6 +38,7 @@ DerpXml_Init() // call this just once at the start of your game
 DerpXmlRead_LoadString(xmlString)
 var inCat = false
 var inFish = false
+var petText = ''
 
 while DerpXmlRead_Read() {
 
@@ -53,11 +59,28 @@ while DerpXmlRead_Read() {
     
     case DerpXmlType_Text:
         if inCat {
-            show_debug_message('cat looks like: '+DerpXmlRead_CurValue())
+            petText = DerpXmlRead_CurValue()
+            show_debug_message('cat looks like: '+petText)
+        }
+        if inFish {
+            petText = DerpXmlRead_CurValue()
+            show_debug_message('fish looks like: '+petText)
+        }
+        break
+    
+    case DerpXmlType_CloseTag:
+        if inCat {
+            /*with instance_create(100, 100, objCat) {
+                text = petText
+            }*/
+            show_debug_message('created cat')
             inCat = false
         }
         if inFish {
-            show_debug_message('fish looks like: '+DerpXmlRead_CurValue())
+            /*with instance_create(100, 100, objFish) {
+                text = petText
+            }*/
+            show_debug_message('created fish')
             inFish = false
         }
         break

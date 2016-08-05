@@ -28,32 +28,26 @@
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_OpenFile</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CloseFile</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_LoadString</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_UnloadString</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_Read</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurType</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurValue</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurRawValue</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_UnloadString</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurGetAttribute</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_New</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Config</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_GetString</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_UnloadString</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_OpenTag</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_CloseTag</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Text</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_GetString</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_UnloadString</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Attribute</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_LeafElement</Resource>
-    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_RunAll</Resource>
-    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_TempTest</Resource>
-    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_TempTest2</Resource>
-    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_ReadAndPrint</Resource>
-    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_Read</Resource>
-    <Resource>Scripts\DerpXml\Tests\DerpXmlTests_Write</Resource>
-    <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_ReadSimple</Resource>
+    <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_Read</Resource>
     <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_ReadOther</Resource>
     <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_ReadComplex</Resource>
     <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_Write</Resource>
-    <Resource>Scripts\DerpXml\DerpXml_ThrowError</Resource>
+    <Resource>Scripts\DerpXml\Internal\DerpXml_ThrowError</Resource>
     <Resource>Objects\DerpXml\objDerpXmlRead</Resource>
     <Resource>Objects\DerpXml\objDerpXmlWrite</Resource>
   </IncludedResources>
