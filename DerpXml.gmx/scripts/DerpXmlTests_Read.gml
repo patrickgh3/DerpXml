@@ -1,4 +1,4 @@
-var xmlstr = '<a cat="bag" cat2="bag"    ><b>derp</b>  </a>'
+var xmlstr = '<a cat="bag" cat2="bag"    ><c cat="bag" /><b>derp</b>  </a>'
 var f = file_text_open_write('test1.xml')
 file_text_write_string(f, xmlstr)
 file_text_close(f)

@@ -12,11 +12,21 @@ with objDerpXmlRead {
     
     var isTag = false
     var isClosingTag = false
+    var isEmptyElement = false
     var tagState = ''
     var tagName = ''
     var attrKey = ''
     var attrVal = ''
     ds_map_clear(attributeMap)
+    
+    // if last read was empty element, just return a closing tag this round
+    if lastReadEmptyElement {
+        lastReadEmptyElement = false
+        currentType = DerpXmlType_CloseTag
+        // don't change currentValue to keep it same as last read
+        currentRawValue = ''
+        return true
+    }
     
     while true {
         // advance in the document
@@ -60,6 +70,11 @@ with objDerpXmlRead {
                     return true
                 }
                 else {
+                    // if empty element, set the flag for the next read
+                    if isEmptyElement {
+                        lastReadEmptyElement = true
+                    }
+                    
                     currentType = DerpXmlType_OpenTag
                     currentValue = tagName
                     currentRawValue = readString
@@ -76,8 +91,13 @@ with objDerpXmlRead {
                 }
                 
                 // check for beginning slash
-                else if numCharsRead == 2 and currentChar == '/' {
+                else if currentChar == '/' and numCharsRead == 2 {
                     isClosingTag = true
+                }
+                
+                // check for ending slash
+                else if currentChar == '/' and numCharsRead > 2 {
+                    isEmptyElement = true
                 }
                 
                 // in the normal case, just add to tag name
@@ -86,8 +106,12 @@ with objDerpXmlRead {
                 }
             }
             else if tagState == 'whitespace' {
-                // if encounter non-space character, it's the start of a key
-                if currentChar != ' ' {
+                // check for ending slash
+                if currentChar == '/' {
+                    isEmptyElement = true
+                }
+                // if encounter non-space and non-slash character, it's the start of a key
+                else if currentChar != ' ' {
                     attrKey += currentChar
                     tagState = 'key'
                 }

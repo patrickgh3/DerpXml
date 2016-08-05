@@ -25,6 +25,7 @@ with objDerpXmlRead {
     currentType = DerpXmlType_StartOfFile
     currentValue = ''
     currentRawValue = ''
+    lastReadEmptyElement = false
 }
 
 // read
