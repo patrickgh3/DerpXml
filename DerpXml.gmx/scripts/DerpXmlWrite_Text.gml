@@ -1,13 +1,11 @@
-/// DerpXmlWrite_Text(value)
+/// DerpXmlWrite_Text(text)
 //
 //  Writes text for the middle of an element.
-//
-//  value    The text
 
-var value = argument0;
+var text = argument0;
 
 with objDerpXmlWrite {
-    writeString += value
+    writeString += text
     lastWriteType = DerpXmlType_Text
     lastWriteEmptyElement = false
 }

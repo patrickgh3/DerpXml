@@ -13,11 +13,11 @@
   <scripts name="scripts">
     <scripts name="DerpXml">
       <script>scripts\DerpXml_Init.gml</script>
-      <script>scripts\DerpXml_ThrowError.gml</script>
       <scripts name="Read">
         <script>scripts\DerpXmlRead_OpenFile.gml</script>
         <script>scripts\DerpXmlRead_CloseFile.gml</script>
         <script>scripts\DerpXmlRead_LoadString.gml</script>
+        <script>scripts\DerpXmlRead_UnloadString.gml</script>
         <script>scripts\DerpXmlRead_Read.gml</script>
         <script>scripts\DerpXmlRead_CurType.gml</script>
         <script>scripts\DerpXmlRead_CurValue.gml</script>
@@ -28,18 +28,21 @@
         <script>scripts\DerpXmlWrite_New.gml</script>
         <script>scripts\DerpXmlWrite_Config.gml</script>
         <script>scripts\DerpXmlWrite_GetString.gml</script>
-        <script>scripts\DerpXmlWrite_Finish.gml</script>
+        <script>scripts\DerpXmlWrite_UnloadString.gml</script>
         <script>scripts\DerpXmlWrite_OpenTag.gml</script>
         <script>scripts\DerpXmlWrite_CloseTag.gml</script>
         <script>scripts\DerpXmlWrite_Text.gml</script>
         <script>scripts\DerpXmlWrite_Attribute.gml</script>
         <script>scripts\DerpXmlWrite_LeafElement.gml</script>
       </scripts>
-      <scripts name="Tests">
-        <script>scripts\DerpXmlTests_RunAll.gml</script>
-        <script>scripts\DerpXmlTests_Read.gml</script>
-        <script>scripts\DerpXmlTests_Write.gml</script>
-        <script>scripts\DerpXmlTests_ReadAndPrint.gml</script>
+      <scripts name="Examples / Tutorials">
+        <script>scripts\DerpXmlExample_Read.gml</script>
+        <script>scripts\DerpXmlExample_ReadOther.gml</script>
+        <script>scripts\DerpXmlExample_ReadComplex.gml</script>
+        <script>scripts\DerpXmlExample_Write.gml</script>
+      </scripts>
+      <scripts name="Internal">
+        <script>scripts\DerpXml_ThrowError.gml</script>
       </scripts>
     </scripts>
   </scripts>

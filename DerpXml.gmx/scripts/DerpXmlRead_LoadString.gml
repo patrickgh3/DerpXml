@@ -1,9 +1,6 @@
 /// DerpXmlRead_LoadFromString(xmlString)
 //
-//  Loads XML contained in a string.
-//
-//  xmlString     string containing XML, e.g. "<a>derp</a>"
-//  Returns whether load was successful
+//  Loads XML contained in a string. e.g. "<a>derp</a>"
 
 var xmlString = argument0
 
@@ -17,4 +14,3 @@ with objDerpXmlRead {
     currentRawValue = ''
     lastReadEmptyElement = false
 }
-return true

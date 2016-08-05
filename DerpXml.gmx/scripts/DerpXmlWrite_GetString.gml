@@ -1,5 +1,5 @@
 /// DerpXmlWrite_GetString()
 //
-//  Returns the finished xml string.
+//  Returns the built xml string.
 
 return objDerpXmlWrite.writeString

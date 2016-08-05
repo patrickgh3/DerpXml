@@ -1,9 +1,7 @@
 /// DerpXmlRead_OpenFile(xmlFilePath)
 //
-//  Opens an XML document from file. Be sure to call DerpXmlRead_CloseFile when you're done.
-//
-//  xmlFilePath    Path to a .xml file
-//  Returns whether load was successful
+//  Opens an XML file for reading. Be sure to call DerpXmlRead_CloseFile when you're done.
+//  Returns whether load was successful.
 
 var xmlFilePath = argument0
 

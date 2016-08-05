@@ -1,10 +1,8 @@
-/// DerpXmlWrite_OpenTag(value)
+/// DerpXmlWrite_OpenTag(tagName)
 //
-//  Writes an open tag, e.g. <tagname>
-//
-//  value    The tag name
+//  Writes an open tag, e.g. <tagName>
 
-var value = argument0;
+var tagName = argument0;
 
 with objDerpXmlWrite {
     if lastWriteType == DerpXmlType_OpenTag {
@@ -14,8 +12,8 @@ with objDerpXmlWrite {
     repeat currentIndent {
         writeString += indentString
     }
-    writeString += '<'+value+'>'
+    writeString += '<'+tagName+'>'
     lastWriteType = DerpXmlType_OpenTag
-    ds_stack_push(tagNameStack, value)
+    ds_stack_push(tagNameStack, tagName)
     lastWriteEmptyElement = false
 }

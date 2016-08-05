@@ -1,7 +1,7 @@
 /// DerpXMlWrite_LeafElement(tagName, text)
 //
-//  Writes an element with no children, e.g. <tagname>text</tagname>
-//  If you supply '' as text, the empty element syntax will be used, e.g. <tagname/>
+//  Writes an element with no children, e.g. <tagName>text</tagName>
+//  If you supply '' as text, the empty element syntax will be used, e.g. <tagName/>
 
 var tagName = argument0
 var text = argument1

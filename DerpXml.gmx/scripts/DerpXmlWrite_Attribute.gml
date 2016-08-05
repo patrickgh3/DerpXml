@@ -3,7 +3,7 @@
 //  Adds an attribute to the open tag that was just written.
 //  Call this right after DerpXmlWrite_OpenTag, or DerpXmlWrite_LeafElement with no text.
 //
-//  <newTag>    -->     <newTag key="value">
+//  <newTag>    -->    <newTag key="value">
 
 var key = argument0
 var value = argument1

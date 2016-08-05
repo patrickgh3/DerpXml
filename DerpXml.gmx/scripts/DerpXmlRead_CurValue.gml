@@ -2,9 +2,8 @@
 //
 //  Returns the content value of the current node.
 //
-//  Examples:
-//      Tags: returns "tagname"
-//      Text: returns "texttext"
-//      Whitespace: returns "    "
+//  DerpXmlType_Open/CloseTag <tagname> - tagname
+//  DerpXmlType_Text <a>text</a>        - text
+//  DerpXmlType_Whitespace "    "       - "    "
 
 return objDerpXmlRead.currentValue

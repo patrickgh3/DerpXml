@@ -1,9 +1,9 @@
 /// DerpXmlRead_Read()
 //
-//  Reads the next XML node from the loaded file.
+//  Reads the next XML node. (tag, text, etc.)
 //
-//  Returns true if the next node was read successfully; false if there
-//  are no more nodes to read.
+//  Returns true if the next node was read successfully, 
+//  and false if there are no more nodes to read.
 
 with objDerpXmlRead {
     var readString = ''
@@ -18,6 +18,11 @@ with objDerpXmlRead {
     var attrKey = ''
     var attrVal = ''
     ds_map_clear(attributeMap)
+    
+    // if was already at end of file, just return false
+    if currentType == DerpXmlType_EndOfFile {
+        return false
+    }
     
     // if last read was empty element, just return a closing tag this round
     if lastReadEmptyElement {
