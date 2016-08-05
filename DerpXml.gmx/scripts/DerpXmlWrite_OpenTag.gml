@@ -17,4 +17,5 @@ with objDerpXmlWrite {
     writeString += '<'+value+'>'
     lastWriteType = DerpXmlType_OpenTag
     ds_stack_push(tagNameStack, value)
+    lastWriteEmptyElement = false
 }

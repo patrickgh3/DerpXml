@@ -40,7 +40,8 @@ with objDerpXmlWrite {
     
     writeString = ''
     currentIndent = 0
-    lastWriteType = 'Start'
+    lastWriteType = DerpXmlType_StartOfFile
+    lastWriteEmptyElement = false
 }
 
 return true

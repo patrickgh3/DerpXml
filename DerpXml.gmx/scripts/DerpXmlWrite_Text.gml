@@ -9,4 +9,5 @@ var value = argument0;
 with objDerpXmlWrite {
     writeString += value
     lastWriteType = DerpXmlType_Text
+    lastWriteEmptyElement = false
 }

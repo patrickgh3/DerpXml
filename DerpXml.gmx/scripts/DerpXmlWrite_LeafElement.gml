@@ -22,5 +22,6 @@ else {
         writeString += '<'+tagName+'/>'
         writeString += newlineString
         lastWriteType = DerpXmlType_CloseTag
+        lastWriteEmptyElement = true
     }
 }

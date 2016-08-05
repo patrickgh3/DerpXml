@@ -20,4 +20,5 @@ with objDerpXmlWrite {
     writeString += '</'+value+'>'
     writeString += newlineString
     lastWriteType = DerpXmlType_CloseTag
+    lastWriteEmptyElement = false
 }
