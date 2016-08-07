@@ -34,8 +34,9 @@
         <script>scripts\DerpXmlWrite_Text.gml</script>
         <script>scripts\DerpXmlWrite_Attribute.gml</script>
         <script>scripts\DerpXmlWrite_LeafElement.gml</script>
+        <script>scripts\DerpXmlWrite_Comment.gml</script>
       </scripts>
-      <scripts name="Examples / Tutorials">
+      <scripts name="Examples">
         <script>scripts\DerpXmlExample_Read.gml</script>
         <script>scripts\DerpXmlExample_ReadOther.gml</script>
         <script>scripts\DerpXmlExample_ReadComplex.gml</script>

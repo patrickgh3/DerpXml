@@ -10,9 +10,13 @@
   <persistent>0</persistent>
   <colour>12632256</colour>
   <showcolour>-1</showcolour>
-  <code>DerpXmlExample_Read()
+  <code>show_debug_message('')
+DerpXmlExample_Read()
+show_debug_message('')
 DerpXmlExample_ReadOther()
+show_debug_message('')
 DerpXmlExample_ReadComplex()
+show_debug_message('')
 DerpXmlExample_Write()</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>

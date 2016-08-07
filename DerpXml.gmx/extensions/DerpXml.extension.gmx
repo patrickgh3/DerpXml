@@ -43,11 +43,12 @@
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Text</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Attribute</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_LeafElement</Resource>
-    <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_Read</Resource>
-    <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_ReadOther</Resource>
-    <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_ReadComplex</Resource>
-    <Resource>Scripts\DerpXml\Examples / Tutorials\DerpXmlExample_Write</Resource>
-    <Resource>Scripts\DerpXml\Internal\DerpXml_ThrowError</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Comment</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_Read</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_ReadOther</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_ReadComplex</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_Write</Resource>
+    <Resource>Scripts\DerpXml\Internal\DerpXml_ThrowError.gml</Resource>
     <Resource>Objects\DerpXml\objDerpXmlRead</Resource>
     <Resource>Objects\DerpXml\objDerpXmlWrite</Resource>
   </IncludedResources>
@@ -95,6 +96,11 @@
         <constant>
           <name>DerpXmlType_EndOfFile</name>
           <value>"EndOfFile"</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>DerpXmlType_Comment</name>
+          <value>"Comment"</value>
           <hidden>0</hidden>
         </constant>
       </constants>

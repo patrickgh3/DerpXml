@@ -17,6 +17,7 @@ if not instance_exists(objDerpXmlRead) {
         currentValue = ''
         currentRawValue = ''
         lastReadEmptyElement = false
+        lastNonCommentType = DerpXmlType_StartOfFile
     }
 }
 

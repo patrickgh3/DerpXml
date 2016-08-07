@@ -8,6 +8,7 @@
   <c/>
   <d cat="bag"></d>
   <e cat="bag" cat2="bag2"/>
+  <!--comment-->
 </root>
 
 */
@@ -32,6 +33,8 @@ DerpXmlWrite_OpenTag('root')
     DerpXmlWrite_LeafElement('e', '')
     DerpXmlWrite_Attribute('cat', 'bag')
     DerpXmlWrite_Attribute('cat2', 'bag2')
+    
+    DerpXmlWrite_Comment('comment')
 DerpXmlWrite_CloseTag()
 
 var xmlString = DerpXmlWrite_GetString()

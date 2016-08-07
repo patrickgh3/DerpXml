@@ -4,6 +4,7 @@
 
 with objDerpXmlWrite {
     if lastWriteType == DerpXmlType_CloseTag {
+        writeString += newlineString
         currentIndent -= 1
         repeat currentIndent {
             writeString += indentString
@@ -18,7 +19,6 @@ with objDerpXmlWrite {
         DerpXml_ThrowError("There was no opening tag to this closing tag!")
     }
     writeString += '</'+value+'>'
-    writeString += newlineString
     lastWriteType = DerpXmlType_CloseTag
     lastWriteEmptyElement = false
 }

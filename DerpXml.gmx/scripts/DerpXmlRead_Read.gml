@@ -8,7 +8,9 @@
 with objDerpXmlRead {
     var readString = ''
     var numCharsRead = 0
-    var lastType = currentType
+    if currentType != DerpXmlType_Comment {
+        lastNonCommentType = currentType
+    }
     
     var isTag = false
     var isClosingTag = false
@@ -18,6 +20,7 @@ with objDerpXmlRead {
     var attrKey = ''
     var attrVal = ''
     ds_map_clear(attributeMap)
+    var isComment = false
     
     // if was already at end of file, just return false
     if currentType == DerpXmlType_EndOfFile {
@@ -33,6 +36,7 @@ with objDerpXmlRead {
         return true
     }
     
+    // main read loop
     while true {
         // advance in the document
         stringPos += 1
@@ -68,22 +72,34 @@ with objDerpXmlRead {
         if isTag {
             // reach > and not in attribute value, so end of tag
             if currentChar == '>' and tagState != 'attr_value' {
-                if isClosingTag {
-                    currentType = DerpXmlType_CloseTag
-                    currentValue = string_copy(readString, 3, string_length(readString)-3)
-                    currentRawValue = readString
-                    return true
-                }
-                else {
-                    // if empty element, set the flag for the next read
-                    if isEmptyElement {
-                        lastReadEmptyElement = true
+                // if comment, check for "--" before
+                if isComment {
+                    if string_copy(readString, string_length(readString)-2, 2) == '--' {
+                        currentType = DerpXmlType_Comment
+                        currentValue = string_copy(readString, 5, string_length(readString)-7)
+                        currentRawValue = readString
+                        return true
                     }
-                    
-                    currentType = DerpXmlType_OpenTag
-                    currentValue = tagName
-                    currentRawValue = readString
-                    return true
+                }
+                // if not comment, then do either closing or opening tag behavior
+                else {
+                    if isClosingTag {
+                        currentType = DerpXmlType_CloseTag
+                        currentValue = tagName
+                        currentRawValue = readString
+                        return true
+                    }
+                    else {
+                        // if empty element, set the flag for the next read
+                        if isEmptyElement {
+                            lastReadEmptyElement = true
+                        }
+                        
+                        currentType = DerpXmlType_OpenTag
+                        currentValue = tagName
+                        currentRawValue = readString
+                        return true
+                }
                 }
             }
             
@@ -92,7 +108,6 @@ with objDerpXmlRead {
                 // check if encountering space, so done with tag name
                 if currentChar == ' ' {
                     tagState = 'whitespace'
-                    tagName = string_copy(readString, 2, string_length(readString)-2)
                 }
                 
                 // check for beginning slash
@@ -108,6 +123,11 @@ with objDerpXmlRead {
                 // in the normal case, just add to tag name
                 else {
                     tagName += currentChar
+                }
+                
+                // check if tag "name" means it's a comment
+                if tagName == '!--' {
+                    isComment = true
                 }
             }
             else if tagState == 'whitespace' {
@@ -162,7 +182,7 @@ with objDerpXmlRead {
             
             // reach a < that's not the first character, which is the end of text and whitespace
             if currentChar == '<' and numCharsRead > 1 {
-                if string_char_at(xmlString, stringPos+1) == '/' and lastType == DerpXmlType_OpenTag {
+                if string_char_at(xmlString, stringPos+1) == '/' and lastNonCommentType == DerpXmlType_OpenTag {
                     currentType = DerpXmlType_Text
                 }
                 else {

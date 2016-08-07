@@ -17,7 +17,7 @@ with objDerpXmlWrite {
     // find appropriate place to insert. one character back if an empty element.
     var insertPos = string_length(writeString)
     if lastWriteEmptyElement {
-        insertPos -= 1 + string_length(newlineString)
+        insertPos -= 1
     }
     
     var insertString = ' ' + string(key) + '="' + string(value) + '"'

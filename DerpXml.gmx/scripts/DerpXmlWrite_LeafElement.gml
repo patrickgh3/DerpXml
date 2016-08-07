@@ -14,13 +14,15 @@ if text != '' {
 else {
     with objDerpXmlWrite {
         if lastWriteType == DerpXmlType_OpenTag {
-            writeString += newlineString
+            currentIndent += 1
         }
+        
+        writeString += newlineString
         repeat currentIndent {
             writeString += indentString
         }
+        
         writeString += '<'+tagName+'/>'
-        writeString += newlineString
         lastWriteType = DerpXmlType_CloseTag
         lastWriteEmptyElement = true
     }
