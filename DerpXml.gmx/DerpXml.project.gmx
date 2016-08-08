@@ -3,11 +3,59 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\DerpXml</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <scripts name="DerpXml">
+      <script>scripts\DerpXml_Init.gml</script>
+      <scripts name="Read">
+        <script>scripts\DerpXmlRead_OpenFile.gml</script>
+        <script>scripts\DerpXmlRead_CloseFile.gml</script>
+        <script>scripts\DerpXmlRead_LoadString.gml</script>
+        <script>scripts\DerpXmlRead_UnloadString.gml</script>
+        <script>scripts\DerpXmlRead_Read.gml</script>
+        <script>scripts\DerpXmlRead_CurType.gml</script>
+        <script>scripts\DerpXmlRead_CurValue.gml</script>
+        <script>scripts\DerpXmlRead_CurRawValue.gml</script>
+        <script>scripts\DerpXmlRead_CurGetAttribute.gml</script>
+      </scripts>
+      <scripts name="Write">
+        <script>scripts\DerpXmlWrite_New.gml</script>
+        <script>scripts\DerpXmlWrite_Config.gml</script>
+        <script>scripts\DerpXmlWrite_GetString.gml</script>
+        <script>scripts\DerpXmlWrite_UnloadString.gml</script>
+        <script>scripts\DerpXmlWrite_OpenTag.gml</script>
+        <script>scripts\DerpXmlWrite_CloseTag.gml</script>
+        <script>scripts\DerpXmlWrite_Text.gml</script>
+        <script>scripts\DerpXmlWrite_Attribute.gml</script>
+        <script>scripts\DerpXmlWrite_LeafElement.gml</script>
+        <script>scripts\DerpXmlWrite_Comment.gml</script>
+      </scripts>
+      <scripts name="Examples">
+        <script>scripts\DerpXmlExample_Read.gml</script>
+        <script>scripts\DerpXmlExample_ReadOther.gml</script>
+        <script>scripts\DerpXmlExample_ReadComplex.gml</script>
+        <script>scripts\DerpXmlExample_Write.gml</script>
+      </scripts>
+      <scripts name="Internal">
+        <script>scripts\DerpXml_ThrowError.gml</script>
+      </scripts>
+    </scripts>
+  </scripts>
+  <objects name="objects">
+    <objects name="DerpXml">
+      <object>objects\objDerpXmlRead</object>
+      <object>objects\objDerpXmlWrite</object>
+    </objects>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room0</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
