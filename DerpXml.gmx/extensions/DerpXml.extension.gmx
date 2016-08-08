@@ -2,8 +2,8 @@
 <extension>
   <name>DerpXml</name>
   <version>1.0.0</version>
-  <packageID></packageID>
-  <ProductID></ProductID>
+  <packageID>com.patrickgh3.derpxml</packageID>
+  <ProductID>AC6E6703C447FB1BF0CFD1D33198EE44</ProductID>
   <date>22/07/16</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
@@ -25,29 +25,29 @@
   <androidPermissions/>
   <IncludedResources>
     <Resource>Scripts\DerpXml\DerpXml_Init</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_OpenFile</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CloseFile</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_LoadString</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_UnloadString</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_Read</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurType</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurValue</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurRawValue</Resource>
-    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurGetAttribute</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_New</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Config</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_GetString</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_UnloadString</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_OpenTag</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_CloseTag</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Text</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Attribute</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_LeafElement</Resource>
-    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Comment</Resource>
-    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_Read</Resource>
-    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_ReadOther</Resource>
-    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_ReadComplex</Resource>
-    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_Write</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_OpenFile.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CloseFile.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_LoadString.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_UnloadString.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_Read.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurType.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurValue.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurRawValue.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurGetAttribute.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_New.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Config.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_GetString.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_UnloadString.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_OpenTag.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_CloseTag.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Text.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Attribute.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_LeafElement.gml</Resource>
+    <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Comment.gml</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_Read.gml</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_ReadOther.gml</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_ReadComplex.gml</Resource>
+    <Resource>Scripts\DerpXml\Examples\DerpXmlExample_Write.gml</Resource>
     <Resource>Scripts\DerpXml\Internal\DerpXml_ThrowError.gml</Resource>
     <Resource>Objects\DerpXml\objDerpXmlRead</Resource>
     <Resource>Objects\DerpXml\objDerpXmlWrite</Resource>

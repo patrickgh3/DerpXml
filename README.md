@@ -1,4 +1,8 @@
 DerpXml
 -------
 
-A simple [SAX-style](http://stackoverflow.com/questions/6828703/what-is-the-difference-between-sax-and-dom) XML parser for GameMaker, written purely in GML.
+A lightweight SAX-style XML parser for GameMaker.
+
+[Marketplace listing here](https://marketplace.yoyogames.com/assets/4221/derpxml)
+
+I imagine there's not much left to contribute, but if you find something, go ahead.
