@@ -96,5 +96,6 @@ while DerpXmlRead_Read()
 }
 
 DerpXmlRead_CloseFile()
-
+ds_stack_destroy(mapStack)
+	
 return root
