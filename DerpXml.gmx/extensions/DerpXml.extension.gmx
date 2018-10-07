@@ -3,13 +3,11 @@
   <name>DerpXml</name>
   <version>1.0.0</version>
   <packageID>com.patrickgh3.derpxml</packageID>
-  <ProductID>AC6E6703C447FB1BF0CFD1D33198EE44</ProductID>
+  <ProductID></ProductID>
   <date>22/07/16</date>
   <license>Free to use, also for commercial games.</license>
   <description></description>
   <helpfile></helpfile>
-  <androidProps>0</androidProps>
-  <iosProps>0</iosProps>
   <installdir></installdir>
   <classname></classname>
   <androidclassname></androidclassname>
@@ -19,9 +17,17 @@
   <maclinkerflags></maclinkerflags>
   <maccompilerflags></maccompilerflags>
   <androidinject></androidinject>
+  <androidmanifestinject></androidmanifestinject>
+  <iosplistinject></iosplistinject>
+  <androidactivityinject></androidactivityinject>
   <gradleinject></gradleinject>
   <iosSystemFrameworks/>
   <iosThirdPartyFrameworks/>
+  <ConfigOptions>
+    <Config name="Default">
+      <CopyToMask>542130248</CopyToMask>
+    </Config>
+  </ConfigOptions>
   <androidPermissions/>
   <IncludedResources>
     <Resource>Scripts\DerpXml\DerpXml_Init</Resource>
@@ -34,6 +40,8 @@
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurValue.gml</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurRawValue.gml</Resource>
     <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurGetAttribute.gml</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_ToJson</Resource>
+    <Resource>Scripts\DerpXml\Read\DerpXmlRead_CurCloneAttribute</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_New.gml</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_Config.gml</Resource>
     <Resource>Scripts\DerpXml\Write\DerpXmlWrite_GetString.gml</Resource>
